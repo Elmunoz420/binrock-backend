@@ -135,8 +135,12 @@ def list_orders(
     if current_user.role == Role.PROVEEDOR:
         q = q.filter(Order.provider_id == current_user.id)
 
+    # 👇 aquí impones FIFO
+    q = q.order_by(Order.created_at.asc())
+
     orders = q.all()
     return [mask_order(o, current_user.role) for o in orders]
+
 
 
 @router.post("/orders/{order_id}/status")
