@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import products, customers, orders, auth
+from routes import products, customers, orders, auth, providers
 from db import engine, Base
 
 # 👇 Importa todos los modelos explícitamente
@@ -23,6 +23,7 @@ app.include_router(products.router, prefix="/api")
 app.include_router(customers.router, prefix="/api")
 app.include_router(orders.router, prefix="/api")
 app.include_router(auth.router, prefix="/api")
+app.include_router(providers.router, prefix="/api")
 
 @app.get("/")
 def root():
