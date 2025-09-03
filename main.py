@@ -17,7 +17,7 @@ from models.user import User, Role
 app = FastAPI(title="Binrock API")
 
 # Crea las tablas si no existen
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 app.include_router(products.router, prefix="/api")
 app.include_router(customers.router, prefix="/api")

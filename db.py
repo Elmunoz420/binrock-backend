@@ -1,13 +1,11 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv  # Import load_dotenv
 
-DB_USER = "root"
-DB_PASS = ""          # tu contraseña de MySQL (en XAMPP normalmente vacío)
-DB_HOST = "localhost"
-DB_PORT = "3306"
-DB_NAME = "binrock"
-
-DATABASE_URL = f"mysql+mysqlconnector://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# --- Config de Postgres en Render ---
+load_dotenv()  # carga variables de .env
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 # pool_pre_ping=True asegura que no se usen conexiones muertas
 engine = create_engine(
